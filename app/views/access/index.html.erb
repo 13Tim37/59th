@@ -1,0 +1,20 @@
+<!--
+<%= link_to("<< Back to Site", {:controller => 'page', :action => 'index'}, :class => 'back-link') %>
+-->
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="menu">
+	<h2> Admin menu </h2>
+	<div class="identity">Logged in as: <%=session[:user_name]%></div>
+	<ul>
+		<li><%= link_to("Manage users", :controller => 'users', :action => 'index') %></li>
+		<li><%= link_to("Manage NRP Applications", :controller => 'nrp_applications') %></li>
+		<li><%= link_to("Manage Recruit Applications", :controller => 'recruit_applications') %></li>
+		<li><%= link_to("Logout", :action => 'logout') %></li>
+	</ul>
+</div>

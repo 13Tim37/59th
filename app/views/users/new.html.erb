@@ -1,0 +1,29 @@
+<%= link_to("<< Back to Index", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="new account">
+	
+	<h2> Add new account </h2>
+	
+	<%= form_for(:user, :url => {:action => 'create'}) do |f| %>
+	
+		<table summary="New account form fields.">
+			<tr>
+				<th>Username</th>
+				<td><%= f.text_field(:user_name) %><td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><%= f.text_field(:email) %><td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><%= f.text_field(:password) %><td>
+			</tr>
+		</table>
+		
+		<div class="form-buttons">
+			<%=submit_tag("Create account") %>
+		</div>
+		
+	<% end %>
+</div>

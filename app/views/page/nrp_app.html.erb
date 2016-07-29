@@ -1,0 +1,31 @@
+<div class="menubar">
+	<div class="menubarCenter">
+		<a style="menuBarLink" href="/page/login"><p class="menuBarItem">Login</p></a>
+	</div>
+</div>
+<div id="headerImage">
+<!--	<img src="../../../public/images/59thbanner.png" alt="header-image" />-->
+	<%= image_tag('59thbanner.png', alt: "59thbanner")%>
+</div>
+<div class="wrapper">
+	<div id="menuitems"> 
+		<a class="menuitem" href="/page/index"><div class="button"><b>Home</b></div></a><!--
+		--><a class="menuitem" href="/page/recruitment"><div class="button"><b>Recruitment</b></div></a><!--
+		--><a class="menuitem" href="/page/servers"><div class="button"><b>Servers</b></div></a><!--
+		--><a class="menuitem" href="http://59th.phy.sx/"><div class="button"><b>Forums</b></div></a>
+	</div>
+	<div id="form">
+		<%= form_tag(:nrp_application, :url => {:action => 'create'}) do |f|%>
+			<%= f.text_field(:user_name)%>
+			<%= f.text_field(:email)%>
+			<%= f.text_feild(:age) %>
+			
+			<%= submit_tag("Submit Application") %>
+		<% end %>
+	</div>
+</div>
+<!-- Footer
+<div class="footer">
+	<p id="copyright">&copy; Tim Howard 2016</p>
+</div> 
+-->

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>59th Regiment of Foot</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	</head>
+	<body>
+		<div class="menubar">
+			<div class="menubarCenter">
+				<div class="menubarLeft">
+					<% if !flash[:notice].blank? %>
+						<div class="notice">
+							<%= flash[:notice] %>
+						</div>
+					<% end %>
+				</div>
+			
+				<% if session[:admin] %>
+					<a style="menuBarLink" href="/admin"><p class="menuBarItem">Admin Page</p></a>
+				<% else %>				
+					<a style="menuBarLink" href="/access/login"><p class="menuBarItem">Login</p></a>	
+				<% end %>				
+			</div>
+		</div>
+		<div id="headerImage">
+			<%= link_to(image_tag('59thbanner.png', alt: "59thbanner"), :controller => 'page', :action => 'index') %>
+		</div>
+		<div class="wrapper">
+			<div id="menuitems"> 
+				<a class="menuitem" href="/page/index"><b>Home</b></a><!--
+			 --><div class="dropdown"><!--
+				 --><a class="menuitem-dropdown" ><b>Join Us </b><text id="menuitem-arrow">&#9662</text></a><!--
+			     --><div class="dropdown-content">
+						<a href="/page/recruit_guide">Recruit Guide</a>
+						<a href="/recruit_applications/new">Recruit Application</a>
+						<a href="/page/co_roster">Officer Roster</a>
+					</div>
+				</div><!--
+			 --><div class="dropdown"><!--
+				 --><a class="menuitem-dropdown" ><b>Servers </b><text id="menuitem-arrow">&#9662</text></a><!--
+			     --><div class="dropdown-content">
+						<a href="/page/servers">Our Servers</a>
+						<a href="/nrp_applications/new">Admin Application</a>
+						<a href="/unban_application/new">Unban Request</a>
+					</div>
+				</div><!--
+			 --><a class="menuitem" href="http://59th.phy.sx/"><b>Forums</b></a>
+			</div>
+			<%= yield %>
+		</div>
+<!-- Footer
+<!--		<div class="footer">
+<!--				<p id="copyright">&copy; Tim Howard 2016</p>
+<!--		</div> 
+	</body>
+</html>

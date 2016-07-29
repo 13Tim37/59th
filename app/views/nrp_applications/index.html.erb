@@ -1,0 +1,33 @@
+<%= link_to("<< Back to Menu", {:controller => 'access', :action => 'index'}, :class => 'back-link') %>
+
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="nrp applications index">
+	<h2>NRP APPLICATIONS</h2>
+	
+	<%= link_to("Add new application", {:action => 'new'}, :class =>'action new') %>
+	
+	<table class="listing" summary="NRP Applications List">
+		<tr class="table header">
+			<th>ID</th>
+			<th>Username</th>
+			<th>Actions</th>
+		</tr>
+		<% @nrp_applications.each do |nrp_application| %>
+		<tr>
+			<td><%= nrp_application.id %></td>
+			<td><%= nrp_application.user_name %></td>
+			<td>
+				<%= link_to("Show", {:action => 'show', :id => nrp_application.id}, :class => 'action show') %>
+				<%= link_to("Edit", {:action => 'edit', :id => nrp_application.id}, :class => 'action edit') %>
+				<%= link_to("Delete", {:action => 'delete', :id => nrp_application.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

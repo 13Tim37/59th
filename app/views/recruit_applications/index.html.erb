@@ -1,0 +1,33 @@
+<%= link_to("<< Back to Menu", {:controller => 'access', :action => 'index'}, :class => 'back-link') %>
+
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="recruit applications index">
+	<h2>RECRUIT APPLICATIONS</h2>
+	
+	<%= link_to("Add new application", {:action => 'new'}, :class =>'action new') %>
+	
+	<table class="listing" summary="Recruit Applications List">
+		<tr class="table header">
+			<th>ID</th>
+			<th>Username</th>
+			<th>Actions</th>
+		</tr>
+		<% @recruit_applications.each do |recruit_application| %>
+		<tr>
+			<td><%= recruit_application.id %></td>
+			<td><%= recruit_application.user_name %></td>
+			<td>
+				<%= link_to("Show", {:action => 'show', :id => recruit_application.id}, :class => 'action show') %>
+				<%= link_to("Edit", {:action => 'edit', :id => recruit_application.id}, :class => 'action edit') %>
+				<%= link_to("Delete", {:action => 'delete', :id => recruit_application.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

@@ -1,0 +1,34 @@
+<%= link_to("<<Back to Index", {:action => 'index'}, :class =>'back-link') %>
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="show nrp app">
+
+	<h2> Show Application </h2>
+
+	<table summary="View Application detail">
+		<tr>
+			<th>User name</th>
+			<td><%= @nrp_application.user_name %><td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><%= @nrp_application.email %><td>
+		</tr>
+		<tr>
+			<th>Age</th>
+			<td><%= @nrp_application.age %><td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @nrp_application.created_at %><td>
+		</tr>
+		<tr>
+			<th>Last Updated</th>
+			<td><%= @nrp_application.updated_at %><td>
+		</tr>
+</div>

@@ -1,0 +1,29 @@
+<%= link_to("<< Back to Site", {:controller => 'page', :action => 'index'}, :class => 'back-link') %>
+
+<div class="new nrp add">
+	
+	<h2> Create Application </h2>
+	
+	<%= form_for(:nrp_application, :url => {:action => 'create'}) do |f| %>
+	
+		<table summary="Application form fields">
+			<tr>
+				<th>Username</th>
+				<td><%= f.text_field(:user_name) %><td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><%= f.text_field(:email) %><td>
+			</tr>
+			<tr>
+				<th>Age</th>
+				<td><%= f.text_field(:age) %><td>
+			</tr>
+		</table>
+		
+		<div class="form-buttons">
+			<%=submit_tag("Submit Application") %>
+		</div>
+		
+	<% end %>
+</div>

@@ -1,0 +1,91 @@
+<%= link_to("<<Back to Index", {:action => 'index'}, :class =>'back-link') %>
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="show nrp app">
+
+	<h2> Show Application </h2>
+
+	<table summary="View Application detail">
+		<tr>
+			<th>User name</th>
+			<td><%= @recruit_application.user_name %><td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><%= @recruit_application.email %><td>
+		</tr>
+		<tr>
+			<th>Age</th>
+			<td><%= @recruit_application.age %><td>
+		</tr>
+		<tr>
+			<th>Has TS3</th>
+			<td>
+				<% if @recruit_application.has_ts3 %>
+					&#9745;
+				<% else %>
+					&#9746;
+				<% end %>
+			</td>
+			
+		</tr>
+		<tr>
+			<th>Has Microphone</th>
+			<td>
+				<% if @recruit_application.has_mic %>
+					&#9745;
+				<% else %>
+					&#9746;
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<th>Steam Profile</th>
+			<td><%= @recruit_application.steam_link %><td>
+		</tr>
+		<tr>
+			<th>Country</th>
+			<td><%= @recruit_application.country %><td>
+		</tr>
+		<tr>
+			<th>Previous Experience</th>
+			<td><%= @recruit_application.new_experience %><td>
+		</tr>
+		<tr>
+			<th>Which company?</th>
+			<td>
+				<% if @recruit_application.which_company == 1%>
+					<%= "Guard Company" %>
+				<% elsif @recruit_application.which_company == 0 %>
+					<%= "Centre Company" %>
+				<% else %>
+					<%= "Light Company" %>
+				<% end %>
+			<td>
+		</tr>
+		<tr>
+			<th>Why do you want to join?</th>
+			<td><%= @recruit_application.join_reason %><td>
+		</tr>
+		<tr>
+			<th>Can anyone vouch for you?</th>
+			<td><%= @recruit_application.vouch %><td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @recruit_application.created_at %><td>
+		</tr>
+		<tr>
+			<th>Last Updated</th>
+			<td><%= @recruit_application.updated_at %><td>
+		</tr>
+	</table>
+	<%= link_to("Accept", {:action => 'accept', :id => @recruit_application.id}) %>
+	<%= link_to("Decline", {:action => 'decline', :id => @recruit_application.id}) %>
+	<%= link_to("Delete", {:action => 'delete', :id => @recruit_application.id}) %>
+</div>

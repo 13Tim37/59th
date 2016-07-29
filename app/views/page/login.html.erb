@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Login page</title>
+		<%= stylesheet_link_tag('application') %>
+	</head>
+	
+	<body>
+		<div class="menubar">
+			<div class="menubarCenter">
+				<a style="menuBarLink" href="/page/index"><p class="menuBarItem">Home</p></a>
+			</div>
+		</div>
+		<div id="headerImage">
+				<%= image_tag('59thbanner.png', alt: 'header-image')%>
+		</div>
+		<div class="loginBox">
+			<form>
+				Login: <input type="text" name="login"><br><br>
+				Password: <input type="text" name="password"><br><br>
+				<input type="submit" value="Login">
+			</form>
+		</div>
+	</body>
+</html>

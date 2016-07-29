@@ -1,0 +1,36 @@
+<%= link_to("<< Back to Menu", {:controller => 'access', :action => 'index'}, :class => 'back-link') %>
+
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="user accounts index">
+	<h2>USER ACCOUNTS</h2>
+	
+	<%= link_to("Add new account", {:action => 'new'}, :class =>'action new') %>
+	
+	<table class="listing" summary="User accounts list">
+		<tr class="table header">
+			<th>ID</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Is Admin</th>
+			<th>Actions</th>
+		</tr>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.user_name %></td>
+			<td><%= user.email %></td>
+			<td><%= user.admin %></td>
+			<td>
+<!-- Not in use	<%= link_to("Show", {:action => 'show', :id => user.id}, :class => 'action show') %>-->
+				<%= link_to("Edit", {:action => 'edit', :id => user.id}, :class => 'action edit') %>
+				<%= link_to("Delete", {:action => 'delete', :id => user.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>
