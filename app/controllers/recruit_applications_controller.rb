@@ -5,6 +5,19 @@ class RecruitApplicationsController < ApplicationController
   
   def index
     @recruit_applications = RecruitApplication.sorted
+
+    if params[:status_filter] && params[:status_filter] != ''
+      if params[:status_filter] == 'Declined'
+        status = 0
+      elsif params[:status_filter] == 'In progress'
+        status = 1
+      elsif params[:status_filter] == 'Accepted'
+        status = 2
+      elsif params[:status_filter] == 'Archived'
+        status = 3
+      end
+      @recruit_applications = @recruit_applications.sort_by_status(status)
+    end
   end
 
   def show
@@ -18,7 +31,8 @@ class RecruitApplicationsController < ApplicationController
   def create
 	# Instantiate a new object using form parameters
 	@recruit_application = RecruitApplication.new(params.require(:recruit_application).permit(:user_name, :email, :age, :has_ts3, :has_mic, :steam_link, :country, :new_experience, :which_company, :join_reason, :vouch))
-	# Save the object
+
+  # Save the object
 	if @recruit_application.save
 	# If save succeeds, redirect to the index action
 		flash[:notice] = "Application created successfully."
@@ -30,37 +44,53 @@ class RecruitApplicationsController < ApplicationController
   end
 
   def edit
-	@recruit_application = RecruitApplication.find(params[:id])
+	  @recruit_application = RecruitApplication.find(params[:id])
   end
   
   def update
-	@recruit_application = RecruitApplication.find(params[:id])
-	if @recruit.update_attributes(params.require(:recruit_application).permit(:user_name, :email, :age))
-		flash[:notice] = "Application updated successfully."
-		redirect_to(:action => 'show', :id => @recruit_application.id)
-	else
-		render('edit')
-	end
+	  @recruit_application = RecruitApplication.find(params[:id])
+	  if @recruit.update_attributes(params.require(:recruit_application).permit(:user_name, :email, :age))
+		  flash[:notice] = "Application updated successfully."
+		  redirect_to(:action => 'show', :id => @recruit_application.id)
+	  else
+		  render('edit')
+	  end
   end  
 
   def delete
-	@recruit_application = RecruitApplication.find(params[:id])
+	  @recruit_application = RecruitApplication.find(params[:id])
   end
   
   def destroy
-	recruit_application = RecruitApplication.find(params[:id]).destroy
-	flash[:notice] = "Application '#{recruit_application.user_name}' deleted successfully."
-	redirect_to(:action => 'index')
+	  recruit_application = RecruitApplication.find(params[:id]).destroy
+	  flash[:notice] = "Application '#{recruit_application.user_name}' deleted successfully."
+	  redirect_to(:action => 'index')
   end
   
   def accept
-	puts "*** APPLICATION ACCEPTED ***"
-	redirect_to(:action => 'index')
+    @recruit_application = RecruitApplication.find(params[:id])
+    @recruit_application.application_status = 2
+    if @recruit_application.save
+      flash[:notice] = "*** Application accepted. ***"
+      puts "*** APPLICATION ACCEPTED ***"
+      puts 'New status: ' + @recruit_application.application_status.to_s
+      render('index')
+    else
+      redirect_to(:action => 'show', :id => @recruit_application.id)
+    end
   end
   
   def decline
-	puts "*** APPLICATION DECLINED ***"
-	redirect_to(:action => 'index')
+    @recruit_application = RecruitApplication.find(params[:id])
+    @recruit_application.application_status = 0
+    if @recruit_application.save
+      flash[:notice] = "*** Application declined. ***"
+      puts "*** APPLICATION DECLINED ***"
+      puts 'New status: ' + @recruit_application.application_status.to_s
+      render('index')
+    else
+      redirect_to(:action => 'show', :id => @recruit_application.id)
+    end
   end
    
 end

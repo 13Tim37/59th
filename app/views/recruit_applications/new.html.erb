@@ -4,11 +4,11 @@
 
 <div class="new recruit app">
 	
-	<h2> Create Recruit Application </h2>
+	<h2 class="application_title"> Create Recruit Application </h2>
 	
 	<%= form_for(:recruit_application, :url => {:action => 'create'}) do |f| %>
 	
-		<table summary="Recruit application form fields">
+		<table summary="Recruit application form fields" class="application">
 			<tr>
 				<th>Username</th>
 				<td><%= f.text_field(:user_name, :size => 40) %><td>
@@ -65,8 +65,10 @@
 			</tr>
 		</table>
 		
-		<div class="form-buttons">
+		<div class="submit_button">
+      <br/>
 			<%=submit_tag("Submit Application") %>
+      <br/>
 		</div>
 		
 	<% end %>

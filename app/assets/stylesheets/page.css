@@ -162,3 +162,20 @@ p#copyright{
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.application {
+    font-family: helvetica, verdana, arial, sans-serif;
+}
+
+.application th {
+    text-align: right;
+}
+
+.application_title {
+    text-align: center;
+    font-family: helvetica, verdana, arial, sans-serif;
+}
+
+.submit_button {
+    text-align: center;
+}

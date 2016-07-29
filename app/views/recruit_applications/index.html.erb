@@ -7,6 +7,16 @@
 	</div>
 <% end %>
 
+<%= form_for(:track, :method => 'get') do %>
+    <table summary='Filter' class='filter_table' id='filter_table'>
+      <tr>
+        <th><%= label_tag(:status_filter, 'Search for:') %></th>
+        <td><%= select_tag :status_filter, options_for_select(['Declined', 'In progress', 'Accepted', 'Archived'], params[:status_filter]), include_blank: true, :style => 'width:100%'%></td>
+        <td><%= submit_tag('Search') %><%= link_to('Clear filter', {:action => 'index'}, :class =>'back-link') %></td>
+      </tr>
+    </table>
+<% end %>
+
 <div class="recruit applications index">
 	<h2>RECRUIT APPLICATIONS</h2>
 	
@@ -16,12 +26,14 @@
 		<tr class="table header">
 			<th>ID</th>
 			<th>Username</th>
+      <th>Status</th>
 			<th>Actions</th>
 		</tr>
 		<% @recruit_applications.each do |recruit_application| %>
 		<tr>
 			<td><%= recruit_application.id %></td>
 			<td><%= recruit_application.user_name %></td>
+      <td><%= recruit_application.application_status %></td>
 			<td>
 				<%= link_to("Show", {:action => 'show', :id => recruit_application.id}, :class => 'action show') %>
 				<%= link_to("Edit", {:action => 'edit', :id => recruit_application.id}, :class => 'action edit') %>
